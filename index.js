@@ -10,20 +10,16 @@ import settingRouter from "./routes/setting.js"
 import dashboardRouter from "./routes/dashboard.js"
 
 import {userRegister} from './userSeed.js'
-connectToDatabase()..then(() => {
-    // Register the user after connecting to the database
-    userRegister();
-})
-.catch((error) => {
-    console.error('Database connection failed:', error);
-})
-
-
+connectToDatabase()
+userRegister();
 
 const app=express();
 app.use(cors({
     origin:"https://employee-frontend-pearl.vercel.app",
-    credentials:true}));
+    credentials:true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json());
 app.use(express.static('public/uploads'))
