@@ -8,7 +8,17 @@ import salaryRouter from "./routes/salary.js"
 import leaveRouter from "./routes/leave.js"
 import settingRouter from "./routes/setting.js"
 import dashboardRouter from "./routes/dashboard.js"
-connectToDatabase();
+
+import {userRegister} from './userSeed.js'
+connectToDatabase()..then(() => {
+    // Register the user after connecting to the database
+    userRegister();
+})
+.catch((error) => {
+    console.error('Database connection failed:', error);
+})
+
+
 
 const app=express();
 app.use(cors({
@@ -16,6 +26,7 @@ app.use(cors({
     credentials:true}));
 
 app.use(express.json());
+app.use(express.static('public/uploads'))
 app.use('/api/auth',authRoutes)
 app.use('/api/department',departmentRouter)
 app.use('/api/employee',employeeRouter)
@@ -28,4 +39,3 @@ app.listen(process.env.PORT,()=>{
     console.log(`server is running on port ${process.env.PORT}`)
 })
 
-app.use( express.static('public/uploads'));
