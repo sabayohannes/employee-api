@@ -11,7 +11,7 @@ import dashboardRouter from "./routes/dashboard.js"
 
 import {userRegister} from './userSeed.js'
 connectToDatabase()
-userRegister();
+
 
 const app=express();
 app.use(cors({
