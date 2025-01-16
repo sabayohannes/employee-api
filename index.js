@@ -9,7 +9,7 @@ import leaveRouter from "./routes/leave.js"
 import settingRouter from "./routes/setting.js"
 import dashboardRouter from "./routes/dashboard.js"
 
-import {userRegister} from './userSeed.js'
+
 connectToDatabase()
 
 
